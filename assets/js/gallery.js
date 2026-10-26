@@ -9,6 +9,15 @@
   if (!section || !wrapper) return;
 
   const STAR = 'M24.5 0 27.8 21.2 49 24.5 27.8 27.8 24.5 49 21.2 27.8 0 24.5 21.2 21.2Z';
+  // one gradient per card, so the ring reads as a spectrum rather than one colour
+  const CARD_GRADS = [
+    'linear-gradient(160deg,#7C5CFF,#FF4D94)',
+    'linear-gradient(160deg,#22E0C8,#7C5CFF)',
+    'linear-gradient(160deg,#FF9A4D,#FF4D94)',
+    'linear-gradient(160deg,#FF4D94,#7C5CFF)',
+    'linear-gradient(160deg,#FFD84D,#FF9A4D)',
+    'linear-gradient(160deg,#22E0C8,#FFD84D)',
+  ];
   const FRAMES = WORK.length;
   const STARS = 6;
   const items = [];
@@ -32,6 +41,7 @@
     const sideV = el('div', 'MyWay_sideV');
     obj.append(fig, sideH, sideV);
     obj.style.zIndex = String(10 + i);
+    obj.style.setProperty('--card-grad', CARD_GRADS[i % CARD_GRADS.length]);
     wrapper.appendChild(obj);
     items.push({ node: obj, phase: (i + .5) / FRAMES, kind: 'frame', i });
   });
@@ -41,7 +51,7 @@
     ['TL', 'TR', 'BL', 'BR'].forEach(k => {
       const s = el('div', `MyWay_side MyWay_side${k}`);
       s.innerHTML = `<svg viewBox="0 0 49 49" fill="none" stroke="currentColor"
-        stroke-width="1" style="width:100%;height:100%;color:var(--color-fg2);opacity:.5">
+        stroke-width="1" style="width:100%;height:100%;color:var(--color-accent-3);opacity:.55">
         <path d="${STAR}"/></svg>`;
       obj.appendChild(s);
     });
@@ -68,7 +78,7 @@
         const l = document.createElementNS(NS, 'line');
         l.setAttribute('x1', x1); l.setAttribute('y1', y1);
         l.setAttribute('x2', x2); l.setAttribute('y2', y2);
-        l.setAttribute('stroke', 'var(--color-border)');
+        l.setAttribute('stroke', 'rgba(var(--rgb-accent),.55)');
         l.setAttribute('opacity', o);
         g.appendChild(l);
       });
@@ -77,7 +87,7 @@
       const t = document.createElementNS(NS, 'line');
       t.setAttribute('x1', cx - 26); t.setAttribute('y1', y);
       t.setAttribute('x2', cx - (i % 5 === 0 ? 44 : 34)); t.setAttribute('y2', y);
-      t.setAttribute('stroke', 'var(--color-border)');
+      t.setAttribute('stroke', 'rgba(var(--rgb-accent),.45)');
       t.setAttribute('opacity', i % 5 === 0 ? '.7' : '.35');
       g.appendChild(t);
     }

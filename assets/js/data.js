@@ -76,6 +76,16 @@
     easeOut: t => 1 - Math.pow(1 - t, 3),
     easeInOut: t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
     reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+    // read a design token so canvas drawing follows the active theme
+    cssVar(name, fallback = '') {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return v || fallback;
+    },
+    // standalone, so it survives being destructured off APP
+    cssRgb(name, fallback = '236,236,246') {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return v || fallback;
+    },
     el(tag, cls, html) {
       const n = document.createElement(tag);
       if (cls) n.className = cls;

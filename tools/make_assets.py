@@ -41,13 +41,47 @@ DISPLAY = os.path.join(TTF, "BigShouldersDisplay_wght.ttf")
 MONO = os.path.join(TTF, "MartianMono_wdth_wght.ttf")
 EDITORIAL = os.path.join(TTF, "BodoniModa_opsz_wght.ttf")
 
-BG = (14, 14, 14)
-FG = (232, 232, 232)
-MID = (140, 140, 140)
-DIM = (74, 74, 74)
-LINE = (48, 48, 48)
+BG = (12, 12, 22)
+FG = (236, 236, 246)
+MID = (150, 150, 178)
+DIM = (84, 84, 112)
+LINE = (52, 52, 78)
 W, H = 1200, 900
 rng = random.Random(20261026)
+
+# Accent ramp shared with assets/css/style.css. Mockups are drawn in
+# monochrome and then mapped onto one of these pairs, which keeps every
+# drawing function readable while giving each piece its own colour.
+ACCENTS = {
+    "violet": ((124, 92, 255), (34, 224, 200)),
+    "magenta": ((255, 77, 148), (124, 92, 255)),
+    "amber": ((255, 154, 77), (255, 216, 77)),
+    "teal": ((34, 224, 200), (124, 92, 255)),
+    "crimson": ((255, 59, 92), (255, 154, 77)),
+    "lime": ((180, 240, 70), (34, 224, 200)),
+}
+
+
+def duotone(img, dark, light, gamma=0.8, tint=0.16):
+    """Map a greyscale mockup onto a dark->light colour ramp.
+
+    A plain colour-map flattens these drawings: many of them are mostly one
+    flat fill, so the whole card collapses to a single hue. Instead the ramp
+    supplies the colour and the drawing keeps its own luminance, which is what
+    makes the type and the rules inside each mockup stay visible. `gamma`
+    lifts the midtones and `tint` blends a little pure ramp back in so the
+    darkest areas still read as brand colour rather than near black.
+    """
+    g = (np.asarray(img.convert("L")).astype(np.float32) / 255.0) ** gamma
+    L = g[..., None]
+    d = np.array(dark, dtype=np.float32) / 255.0
+    l = np.array(light, dtype=np.float32) / 255.0
+    ramp = d + (l - d) * L
+    ramp_lum = np.maximum(
+        ramp[..., 0] * 0.2126 + ramp[..., 1] * 0.7152 + ramp[..., 2] * 0.0722, 1e-3)[..., None]
+    out = ramp * (L / ramp_lum)
+    out = out * (1 - tint) + ramp * tint
+    return Image.fromarray(np.clip(out * 255, 0, 255).astype(np.uint8))
 
 
 def display(size, weight=800):
@@ -73,7 +107,7 @@ def canvas(w=W, h=H, bg=BG):
     return img, ImageDraw.Draw(img)
 
 
-def grain(img, amount=9):
+def grain(img, amount=5):
     a = np.asarray(img).astype(np.int16)
     n = np.random.normal(0, amount, a.shape[:2])[..., None]
     return Image.fromarray(np.clip(a + n, 0, 255).astype(np.uint8))
@@ -347,18 +381,18 @@ def art_shader():
 
 
 ARTS = [
-    (art_branding, "work-01", "Branding"),
-    (art_uikit, "work-02", "UI Design"),
-    (art_landing, "work-03", "Landing Page"),
-    (art_saas, "work-04", "Korus — SaaS"),
-    (art_dashboard, "work-05", "SBE Hub"),
-    (art_motion, "work-06", "Motion"),
-    (art_glass, "work-07", "Glassmorphism"),
-    (art_analytics, "work-08", "Dashboard"),
-    (art_identity, "work-09", "Identity"),
-    (art_typography, "work-10", "Typography"),
-    (art_tokens, "work-11", "Design"),
-    (art_shader, "work-12", "Design & Code"),
+    (art_branding, "work-01", "Branding", "violet"),
+    (art_uikit, "work-02", "UI Design", "teal"),
+    (art_landing, "work-03", "Landing Page", "amber"),
+    (art_saas, "work-04", "Korus — SaaS", "magenta"),
+    (art_dashboard, "work-05", "SBE Hub", "teal"),
+    (art_motion, "work-06", "Motion", "crimson"),
+    (art_glass, "work-07", "Glassmorphism", "violet"),
+    (art_analytics, "work-08", "Dashboard", "lime"),
+    (art_identity, "work-09", "Identity", "magenta"),
+    (art_typography, "work-10", "Typography", "amber"),
+    (art_tokens, "work-11", "Design", "violet"),
+    (art_shader, "work-12", "Design & Code", "teal"),
 ]
 
 # monitor wall: camera id, label, artwork index
@@ -391,7 +425,8 @@ def make_posters(arts):
         d = ImageDraw.Draw(v)
         for _ in range(220):
             y = rng.randrange(H)
-            d.line([(0, y), (W, y)], fill=(rng.randrange(18, 46),) * 3)
+            t = rng.randrange(18, 46)
+            d.line([(0, y), (W, y)], fill=(t, t, int(t * 1.6)))
         name = VIDEO_NAMES.get(cam, f"rec-{cam[-2:]}")
         out[cam] = (name, v)
     return out
@@ -411,14 +446,14 @@ def make_videos(posters, tmp):
                  (nw - vw) // 2 + vw, (nh - vh) // 2 + vh))
             f = grain(f, 16)
             d = ImageDraw.Draw(f)
-            d.text((12, 10), "● REC", font=mono(15, 700), fill=(204, 34, 34))
-            d.text((vw - 12, 10), cam, font=mono(14), fill=(200, 200, 200), anchor="ra")
+            d.text((12, 10), "● REC", font=mono(15, 700), fill=(255, 59, 92))
+            d.text((vw - 12, 10), cam, font=mono(14), fill=(34, 224, 200), anchor="ra")
             d.text((12, vh - 22), f"2026-10-26 {i // 5:02d}:{(i * 3) % 60:02d}:{i:02d}",
-                   font=mono(13), fill=(150, 150, 150))
+                   font=mono(13), fill=(150, 150, 178))
             d.text((vw - 12, vh - 22), name.upper(), font=mono(13),
-                   fill=(150, 150, 150), anchor="ra")
+                   fill=(150, 150, 178), anchor="ra")
             band = int(vh * ((ph * 1.7) % 1.0))
-            d.rectangle([0, band, vw, band + 14], fill=(48, 48, 48))
+            d.rectangle([0, band, vw, band + 14], fill=(124, 92, 255))
             f.save(os.path.join(tmp, f"f{i:03d}.png"))
         out = os.path.join(ROOT, "assets", "works", f"{name}.mp4")
         subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-framerate", "4",
@@ -512,12 +547,12 @@ def main():
     for sub in ("works", "images"):
         os.makedirs(os.path.join(ROOT, "assets", sub), exist_ok=True)
     arts = {}
-    for fn, name, _label in ARTS:
-        img = fn()
+    for fn, name, _label, key in ARTS:
+        img = duotone(fn(), *ACCENTS[key])
         img.save(os.path.join(ROOT, "assets", "works", f"{name}.webp"),
-                 "WEBP", quality=78, method=6)
+                 "WEBP", quality=80, method=6)
         arts[name] = img
-        print("art", name, "done")
+        print("art", name, key, "done")
     posters = make_posters(arts)
     for _cam, (name, img) in posters.items():
         img.save(os.path.join(ROOT, "assets", "works", f"{name}-poster.jpg"),

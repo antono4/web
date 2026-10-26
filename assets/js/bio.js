@@ -37,7 +37,7 @@
       const c = document.createElementNS(NS, 'circle');
       c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 3.2);
       c.setAttribute('fill', 'none');
-      c.setAttribute('stroke', 'var(--color-border)');
+      c.setAttribute('stroke', 'var(--color-accent-2)');
       svg.appendChild(c);
     });
   }

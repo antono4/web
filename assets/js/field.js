@@ -2,7 +2,7 @@
    Design / Code label pairs. */
 (() => {
   'use strict';
-  const { $, FIELD_PAIRS, reduceMotion, clamp, lerp } = window.APP;
+  const { $, FIELD_PAIRS, reduceMotion, clamp, lerp, cssRgb } = window.APP;
 
   const section = $('#field');
   const canvas = $('#field-canvas');
@@ -14,6 +14,7 @@
   const dpr = Math.min(devicePixelRatio || 1, 2);
 
   let W = 0, H = 0, step = 34, cols = 0, rows = 0;
+  let rgbA = '124,92,255', rgbB = '34,224,200';
   const pointer = { x: -1e5, y: -1e5, on: false };
 
   function resize() {
@@ -40,6 +41,8 @@
 
   function draw(now) {
     ctx.clearRect(0, 0, W, H);
+    rgbA = cssRgb('--rgb-accent', '124,92,255');
+    rgbB = cssRgb('--rgb-accent-2', '34,224,200');
     const t = now / 1000;
     const radius = R();
     for (let ix = 0; ix < cols; ix++) {
@@ -59,7 +62,11 @@
         const wave = Math.sin(x * .011 + t * .7) * Math.cos(y * .013 - t * .45);
         a = Math.min(1, a + Math.max(0, wave) * .26);
         size += Math.max(0, wave) * .8;
-        ctx.fillStyle = `rgba(226,226,226,${(a * .6).toFixed(3)})`;
+        // dots drift between the two lead accents across the grid, so the
+        // field reads as a colour gradient rather than one flat tint
+        const mix = clamp((ix / Math.max(1, cols - 1)) * .6 + (1 - iy / Math.max(1, rows - 1)) * .4);
+        const rgb = mix > .5 ? rgbA : rgbB;
+        ctx.fillStyle = `rgba(${rgb},${(a * .7).toFixed(3)})`;
         ctx.fillRect(x, y, size * dpr, size * dpr);
       }
     }

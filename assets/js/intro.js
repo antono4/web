@@ -1,7 +1,7 @@
 /* Boot sequence overlay: particle star that assembles, then splits away. */
 (() => {
   'use strict';
-  const { $, $$, clamp, lerp, easeOut, reduceMotion } = window.APP;
+  const { $, $$, clamp, lerp, easeOut, reduceMotion, cssVar } = window.APP;
 
   const root = $('#intro');
   if (!root) return;
@@ -19,6 +19,8 @@
                 [21.2, 27.8], [0, 24.5], [21.2, 21.2]];
 
   let W = 0, H = 0, particles = [];
+  // resolved once per frame-batch so a theme swap is picked up on reload
+  let accent1 = '#7C5CFF', accent2 = '#22E0C8';
 
   function sampleStar(n) {
     const segs = [];
@@ -49,6 +51,7 @@
       x: Math.random() * W,
       y: Math.random() * H,
       r: (Math.random() * 1.5 + .7) * dpr,
+      hot: Math.random() < .35,
     }));
   }
   resize();
@@ -61,8 +64,10 @@
   function frame(now) {
     const t = clamp((now - start) / DUR);
     const k = easeOut(t);
+    accent1 = cssVar('--color-accent', '#7C5CFF');
+    accent2 = cssVar('--color-accent-2', '#22E0C8');
     ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = '#E2E2E2';
+    ctx.fillStyle = cssVar('--color-accent', '#7C5CFF');
 
     const burst = t >= 1 ? clamp((now - start - DUR) / 700) : 0;
     for (const p of particles) {
@@ -77,6 +82,7 @@
         p.y = lerp(p.y, p.ty, .05 + k * .2);
         ctx.globalAlpha = .12 + k * .88;
       }
+      ctx.fillStyle = p.hot ? accent2 : accent1;
       ctx.fillRect(p.x, p.y, p.r, p.r);
     }
     ctx.globalAlpha = 1;

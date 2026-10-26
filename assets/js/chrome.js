@@ -137,17 +137,19 @@
     const rule = document.createElementNS(NS, 'line');
     rule.setAttribute('x1', 0); rule.setAttribute('y1', horizon);
     rule.setAttribute('x2', VW); rule.setAttribute('y2', horizon);
-    rule.setAttribute('stroke', 'var(--color-border)');
+    rule.setAttribute('stroke', 'var(--color-accent)');
     rule.setAttribute('stroke-width', '.15');
     rule.setAttribute('vector-effect', 'non-scaling-stroke');
     svg.appendChild(rule);
 
     const STAR = 'M24.5 0 27.8 21.2 49 24.5 27.8 27.8 24.5 49 21.2 27.8 0 24.5 21.2 21.2Z';
+    const STAR_INKS = ['var(--color-accent)', 'var(--color-accent-2)',
+                       'var(--color-accent-3)', 'var(--color-accent-4)'];
     [[7, 13, .55], [90, 20, .4], [15, 78, .32], [82, 66, .5], [45, 27, .3], [62, 88, .26]]
       .forEach(([x, y, s], i) => {
         const p = document.createElementNS(NS, 'path');
         p.setAttribute('d', STAR);
-        p.setAttribute('fill', 'var(--color-fg2)');
+        p.setAttribute('fill', STAR_INKS[i % STAR_INKS.length]);
         p.setAttribute('transform',
           `translate(${x} ${y}) scale(${s * .18}) translate(-24.5 -24.5)`);
         p.style.animation = `twinkle ${3.2 + i * .8}s ease-in-out ${i * .45}s infinite`;
