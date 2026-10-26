@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes">
+<title>Maxime Duval — Creative Developer</title>
+<meta name="description" content="Creative developer. Reactive, modular, pixel-perfect interfaces built with design and code.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Maxime Duval — Creative Developer">
+<meta property="og:description" content="Reactive · Modular · Pixel-Perfect. Global development from France.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/BigShouldersDisplay-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/MartianMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/BodoniModa-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+
+<div id="grain" aria-hidden="true"></div>
+<div id="cursor-dot" class="Cursor_cursor" aria-hidden="true"></div>
+<div id="theme-glitch-r" aria-hidden="true"></div>
+<div id="theme-glitch-b" aria-hidden="true"></div>
+<div id="theme-mask" aria-hidden="true">
+  <svg viewBox="0 0 49 49" id="theme-glitch-logo" fill="currentColor" aria-hidden="true">
+    <path d="M24.5 0 27.8 21.2 49 24.5 27.8 27.8 24.5 49 21.2 27.8 0 24.5 21.2 21.2Z"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════ intro loader -->
+<div class="Intro_root" id="intro">
+  <canvas class="Intro_canvas" id="intro-canvas" aria-hidden="true"></canvas>
+  <div class="Intro_logo" id="intro-logo">
+    <svg class="Intro_svg" viewBox="0 0 49 49" fill="currentColor" aria-hidden="true">
+      <path d="M24.5 0 27.8 21.2 49 24.5 27.8 27.8 24.5 49 21.2 27.8 0 24.5 21.2 21.2Z"/>
+    </svg>
+  </div>
+  <div class="Intro_name" id="intro-name">
+    <span>MAXIME</span><span class="Intro_sep">✦</span><span>DUVAL</span>
+  </div>
+  <div class="Intro_meta">
+    <span id="intro-percent">0%</span>
+    <span>CREATIVE DEVELOPER</span>
+  </div>
+  <div class="Intro_loadingBars" aria-hidden="true">
+    <span class="Intro_loadingBar"></span><span class="Intro_loadingBar"></span>
+    <span class="Intro_loadingBar"></span><span class="Intro_loadingBar"></span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ navigation -->
+<header class="Nav_nav">
+  <div class="Nav_seg Nav_logoSeg">
+    <div class="Nav_logoSvg" style="position:relative">
+      <svg viewBox="0 0 49 49" fill="currentColor" aria-hidden="true">
+        <path d="M24.5 0 27.8 21.2 49 24.5 27.8 27.8 24.5 49 21.2 27.8 0 24.5 21.2 21.2Z"/>
+      </svg>
+      <svg viewBox="0 0 49 49" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" class="Nav_logoOutline">
+        <path d="M24.5 0 27.8 21.2 49 24.5 27.8 27.8 24.5 49 21.2 27.8 0 24.5 21.2 21.2Z" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="Nav_seg Nav_tickerSeg">
+    <div class="Nav_tickerWrap">
+      <div class="Nav_tickerLine"><span class="Nav_tickerItem">Reactive</span></div>
+      <div class="Nav_tickerLine"><span class="Nav_tickerItem">Modular</span></div>
+      <div class="Nav_tickerLine"><span class="Nav_tickerItem">Pixel-Perfect</span></div>
+      <div class="Nav_tickerLine"><span class="Nav_tickerItem">Work</span></div>
+    </div>
+  </div>
+
+  <nav class="Nav_seg Nav_linksSeg" aria-label="Navigation">
+    <a class="Nav_navLink" href="#myway">Work</a>
+    <a class="Nav_navLink" href="#faq">About</a>
+    <a class="Nav_navLink" href="#contact">Contact</a>
+  </nav>
+
+  <div class="Nav_seg Nav_socialsSeg">
+    <a class="Nav_socialCell" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <div class="Nav_socialRule" aria-hidden="true"></div>
+    <a class="Nav_socialCell" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.35 4.7-4.57 4.95.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/>
+      </svg>
+    </a>
+  </div>
+
+  <button class="Nav_seg Nav_themeSeg" id="theme-toggle" aria-label="Toggle theme">
+    <span class="Nav_halfCircle" aria-hidden="true"></span>
+  </button>
+
+  <div class="Nav_seg Nav_infoSeg">
+    <div class="Nav_infoTop">Global development from France</div>
+    <div class="Nav_infoRule" aria-hidden="true"></div>
+    <div class="Nav_infoBottom">
+      <span class="Nav_infoLine">Available for freelance</span>
+      <a class="Nav_infoLine Nav_infoContact" href="#contact">Hire me →</a>
+    </div>
+  </div>
+
+  <a class="Nav_seg Nav_qrSeg" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+    <img class="Nav_qrImg" src="assets/images/qr-instagram.png" alt="" width="80" height="80">
+  </a>
+</header>
+
+<main>
+  <!-- ═════════════════════════════════════════════ hero -->
+  <section class="Hero_hero" id="hero">
+    <svg class="Hero_svg" id="hero-svg" aria-hidden="true"></svg>
+    <div class="Hero_wiper" aria-hidden="true"></div>
+
+    <div class="Hero_heroInner">
+      <div class="Hero_left">
+        <span class="Hero_kicker">Portfolio / 2026</span>
+        <h1 class="Hero_title">
+          <span class="Hero_line"><span class="Hero_word">Creative</span></span>
+          <span class="Hero_line"><span class="Hero_word">Developer</span></span>
+        </h1>
+        <p class="Hero_desc">
+          I design and build reactive interfaces — from the first wireframe to the
+          last deploy. Design and code, never one without the other.
+        </p>
+        <div class="Hero_actions">
+          <a class="Hero_cta" href="#myway"><span>See the work</span><span aria-hidden="true">↓</span></a>
+          <a class="Hero_cta Hero_ctaGhost" href="#contact"><span>Start a project</span><span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="Hero_stats" aria-hidden="true">
+        <div class="Hero_stat"><span class="Hero_statK">Focus</span><span class="Hero_statV">Interfaces</span></div>
+        <div class="Hero_stat"><span class="Hero_statK">Stack</span><span class="Hero_statV">Web / Motion</span></div>
+        <div class="Hero_stat"><span class="Hero_statK">Reply</span><span class="Hero_statV">&lt; 24h</span></div>
+        <div class="Hero_stat"><span class="Hero_statK">Base</span><span class="Hero_statV">UTC+1</span></div>
+      </div>
+    </div>
+
+    <div class="Hero_banner notranslate" id="hero-banner">
+      <div class="Hero_binBar"><span class="Hero_binText" data-bin="binary"></span></div>
+      <div class="Hero_bannerInner">
+        <span class="Hero_bannerWord" data-word="MAXIME"></span>
+        <span class="Hero_bannerSep">✦</span>
+        <span class="Hero_bannerWord" data-word="DUVAL"></span>
+      </div>
+      <div class="Hero_binBar"><span class="Hero_binText" data-bin="hex"></span></div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════ design / code field -->
+  <section class="Field_section" id="field">
+    <canvas class="Field_canvas" id="field-canvas" aria-hidden="true"></canvas>
+    <div class="Field_words" aria-hidden="true">
+      <span class="Field_word Field_wordTL">Design</span>
+      <span class="Field_word Field_wordBR">Code</span>
+    </div>
+    <div class="Field_overlay">
+      <div class="Field_block Field_blockLeft">
+        <span class="Field_label" data-label="0">Interface</span>
+        <p class="Field_desc" data-desc="0">Layout, typography and rhythm — the structure you feel before you read a word.</p>
+      </div>
+      <div class="Field_block Field_blockRight">
+        <span class="Field_label" data-label="1">Motion</span>
+        <p class="Field_desc" data-desc="1">Scroll, hover and transition work that stays smooth on a low-end phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════ bio -->
+  <section class="Bio_bio" id="about">
+    <svg class="Bio_svg" id="bio-svg" aria-hidden="true"></svg>
+    <div class="Bio_inner" id="bio-inner">
+      <div class="Bio_labelBar"><span class="Bio_labelText">About</span></div>
+      <div class="Bio_text">
+        <p class="Bio_para">I started building things on a screen before I understood what was running underneath. Games first, then the need to take them apart — and the discovery that the interesting part was always the layer below the surface.</p>
+        <p class="Bio_para">I studied computer science, but most of what I use daily I taught myself: breaking builds, rebuilding them, pushing every tool until it stops being polite. The same instinct shaped the visual side — composition, type, brand systems.</p>
+        <p class="Bio_para">Today those two halves are one practice. Every project I touch has to work under load and look deliberate at rest. What I care about is the seam between hardware, software and the people using them.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════ 3d gallery -->
+  <section class="MyWay_section" id="myway">
+    <div class="MyWay_center" aria-hidden="true">
+      <img src="assets/images/ghost-icon.png" alt="" width="256" height="256">
+    </div>
+
+    <div class="MyWay_wrapper" id="myway-wrapper">
+      <div class="MyWay_ruler" id="myway-ruler" aria-hidden="true"></div>
+      <!-- .MyWay_obj items are generated from WORK data in main.js -->
+    </div>
+
+    <div class="MyWay_catcher" aria-hidden="true">
+      <div class="MyWay_catcherDistortedWrap">
+        <div class="MyWay_catcherDistorted">
+          <div class="MyWay_catcherText MyWay_catcherTextDist" id="catcher-dist">Selected Work</div>
+        </div>
+      </div>
+      <div class="MyWay_catcherNormalWrap">
+        <div class="MyWay_catcherNormal">
+          <div class="MyWay_catcherText MyWay_catcherTextNorm" id="catcher-norm">Selected Work</div>
+        </div>
+      </div>
+    </div>
+    <svg class="MyWay_svg" id="myway-svg" aria-hidden="true"></svg>
+  </section>
+
+  <!-- ═════════════════════════════════════════════ video wall -->
+  <section class="VideoGrid_section" id="videos">
+    <div class="VideoGrid_header">
+      <span class="VideoGrid_headerTitle">// SURVEILLANCE SYSTEM v2.1.4</span>
+      <span class="VideoGrid_headerStatus">
+        <span class="VideoGrid_recDotHeader">●</span>&nbsp;RECORDING ACTIVE
+      </span>
+      <span class="VideoGrid_headerFeeds" id="feeds-status">// 13 / 13 FEEDS ONLINE</span>
+    </div>
+    <div class="VideoGrid_grid" id="video-grid">
+      <!-- monitors generated from MONITORS data in main.js -->
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════ faq -->
+  <section class="Faq_faq" id="faq">
+    <div class="Faq_stage">
+      <div class="Faq_titleWrap" aria-hidden="true">
+        <div class="Faq_titleRow">
+          <div class="Faq_fWrap">
+            <span class="Faq_letter">F</span>
+            <span class="Faq_descF">asked often</span>
+          </div>
+          <div class="Faq_qWrap">
+            <span class="Faq_descQ">answered without filter</span>
+            <span class="Faq_letter">Q</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="Faq_rail" id="faq-rail">
+        <div class="Faq_list" id="faq-list">
+          <!-- items generated from FAQ data in main.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════════════════════ contact -->
+  <section class="Contact_contact" id="contact">
+    <div class="Contact_sticky">
+      <div class="Contact_inner">
+        <div class="Contact_top">
+          <div class="Contact_subject" aria-hidden="true"></div>
+          <div class="Contact_infoRow">
+            <div class="Contact_info Contact_infoTL">
+              <span class="Contact_infoLabel">Availability</span>
+              <span class="Contact_infoText">Available · reply &lt; 24h</span>
+              <span class="Contact_infoText">France / Remote / UTC+1</span>
+              <div class="Contact_socials">
+                <a class="SocialIconButton_btn" href="mailto:hello@maximeduval.dev" aria-label="Mail">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>
+                  </svg>
+                </a>
+                <a class="SocialIconButton_btn" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+                  </svg>
+                </a>
+                <a class="SocialIconButton_btn" href="https://github.com/" target="_blank" rel="noopener" aria-label="GitHub">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.35 4.7-4.57 4.95.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="Contact_info Contact_infoTR">
+              <span class="Contact_infoLabel">Links</span>
+              <a class="Contact_infoLink" href="https://github.com/" target="_blank" rel="noopener">github.com/maximeduval</a>
+              <a class="Contact_infoLink" href="#contact">Book a call · 15 min</a>
+              <a class="Contact_infoLink" href="https://www.linkedin.com/" target="_blank" rel="noopener">linkedin / maxime-duval</a>
+              <a class="Contact_infoLink" href="#myway">library — build notes</a>
+            </div>
+          </div>
+
+          <div class="Contact_bigRow">
+            <a class="Contact_bigLink" href="mailto:hello@maximeduval.dev">HELLO@MAXIMEDUVAL.DEV</a>
+            <a class="Contact_bigLink Contact_bigLinkRight" href="#contact">BOOK A CALL →</a>
+          </div>
+
+          <div class="Contact_legal" aria-label="Copyright">
+            <span class="Contact_legalText">© 2026 Maxime Duval · Made by Maxime Duval</span>
+            <nav class="Contact_legalLinks" aria-label="Legal links">
+              <a href="#contact">Mentions légales</a>
+              <a href="#contact">Confidentialité</a>
+              <a href="#contact">CGV</a>
+              <a href="#contact">Cookies</a>
+            </nav>
+          </div>
+        </div>
+        <div class="Contact_fringe" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/intro.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script src="assets/js/field.js"></script>
+<script src="assets/js/bio.js"></script>
+<script src="assets/js/gallery.js"></script>
+<script src="assets/js/videos.js"></script>
+<script src="assets/js/faq.js"></script>
+</body>
+</html>
