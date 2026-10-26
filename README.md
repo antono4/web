@@ -48,6 +48,36 @@ writes the whole of `assets/`. Editing the drawing functions in
 `tools/make_assets.py` is the way to change the visual direction of the
 gallery and the monitor wall.
 
+## Layout
+
+Everything shares one gutter. `--pad-inline` is
+`max(--gutter, (100% - --maxw) / 2)`, and every full-bleed section uses it, so
+sections either line up with the grid or are deliberately edge-to-edge. Spacing
+runs on a 4px scale (`--sp-1` … `--sp-10`) and type on a small scale
+(`--fs-2xs` … `--fs-lg`).
+
+`--fs-2xs` is 11px and is the floor: the labels used to render at 6px, which is
+unreadable rather than merely small. Anything that needs to be smaller at a
+narrow width gets a different clamp, not a smaller floor.
+
+## Effects
+
+`effects.js` adds three things, all additive:
+
+- a reveal on enter for the hero copy, the field blocks and the bio, staggered
+  by sibling. It animates the standalone `translate` property rather than
+  `transform`, so it composes with the transforms the gallery, bio and contact
+  modules already drive.
+- a scroll progress rule.
+- a section index, hidden below 1024px, that marks the section nearest the
+  middle of the viewport — which keeps working across the pinned FAQ and
+  contact stages.
+
+Two guards matter here. The hidden state is gated on a `.js` class set before
+first paint, so the copy is still visible if the script never runs. And a jump
+down the page can carry the viewport past an element without it ever
+intersecting, so anything already above the fold is revealed outright.
+
 ## Colour
 
 Everything is driven by tokens at the top of `assets/css/style.css`. Five
@@ -72,6 +102,11 @@ labels over the video wall keep a light ink in both themes.
   everything pauses when the tab is hidden.
 - The intro and dot-field canvases read their colours from the same CSS tokens
   at draw time, so they follow the active theme.
+- Two places need ink that ignores the theme because what is behind them does
+  not follow it: the drifting gallery title sits over saturated artwork, so it
+  carries a dark scrim, and the gallery card captions sit on per-card gradients,
+  so they carry their own dark band. Neither can be solved with a token, since
+  the background is arbitrary.
 - The mockups and monitor loops are drawn in greyscale and then mapped onto a
   per-work accent pair by `duotone()` in `tools/make_assets.py`. The mapping
   keeps each drawing's own luminance and only takes the colour from the ramp;

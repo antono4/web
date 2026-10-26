@@ -30,6 +30,9 @@
     wrap.setAttribute('role', 'region');
     wrap.setAttribute('aria-labelledby', `faq-trigger-${i}`);
     const inner = el('div', 'Faq_answerInner');
+    // a spacer column, so the answer sits in the second column and keeps a
+    // readable measure instead of running the full rail width
+    inner.appendChild(el('div', 'Faq_answerGutter', ''));
     inner.appendChild(el('p', 'Faq_answerText', a));
     wrap.appendChild(inner);
     item.append(btn, wrap);

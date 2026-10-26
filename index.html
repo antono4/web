@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover, user-scalable=yes">
 <title>antono — Creative Developer</title>
 <meta name="description" content="Creative developer. Reactive, modular, pixel-perfect interfaces built with design and code.">
+<script>document.documentElement.classList.add("js")</script>
 <meta name="theme-color" content="#06060B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F5F3FF" media="(prefers-color-scheme: light)">
 <meta property="og:title" content="antono — Creative Developer">
@@ -18,6 +19,8 @@
 </head>
 <body data-page="home">
 
+<div id="scroll-progress" aria-hidden="true"></div>
+<nav class="SectionIndex_index" id="section-index"></nav>
 <div id="grain" aria-hidden="true"></div>
 <div id="cursor-dot" class="Cursor_cursor" aria-hidden="true"></div>
 <div id="theme-glitch-r" aria-hidden="true"></div>
@@ -117,16 +120,16 @@
 
     <div class="Hero_heroInner">
       <div class="Hero_left">
-        <span class="Hero_kicker">Portfolio / 2026</span>
+        <span class="Hero_kicker" data-reveal>Portfolio / 2026</span>
         <h1 class="Hero_title">
           <span class="Hero_line"><span class="Hero_word">Creative</span></span>
           <span class="Hero_line"><span class="Hero_word">Developer</span></span>
         </h1>
-        <p class="Hero_desc">
+        <p class="Hero_desc" data-reveal>
           I design and build reactive interfaces — from the first wireframe to the
           last deploy. Design and code, never one without the other.
         </p>
-        <div class="Hero_actions">
+        <div class="Hero_actions" data-reveal>
           <a class="Hero_cta" href="#myway"><span>See the work</span><span aria-hidden="true">↓</span></a>
           <a class="Hero_cta Hero_ctaGhost" href="#contact"><span>Start a project</span><span aria-hidden="true">→</span></a>
         </div>
@@ -157,11 +160,11 @@
       <span class="Field_word Field_wordBR">Code</span>
     </div>
     <div class="Field_overlay">
-      <div class="Field_block Field_blockLeft">
+      <div class="Field_block Field_blockLeft" data-reveal>
         <span class="Field_label" data-label="0">Interface</span>
         <p class="Field_desc" data-desc="0">Layout, typography and rhythm — the structure you feel before you read a word.</p>
       </div>
-      <div class="Field_block Field_blockRight">
+      <div class="Field_block Field_blockRight" data-reveal>
         <span class="Field_label" data-label="1">Motion</span>
         <p class="Field_desc" data-desc="1">Scroll, hover and transition work that stays smooth on a low-end phone.</p>
       </div>
@@ -173,7 +176,7 @@
     <svg class="Bio_svg" id="bio-svg" aria-hidden="true"></svg>
     <div class="Bio_inner" id="bio-inner">
       <div class="Bio_labelBar"><span class="Bio_labelText">About</span></div>
-      <div class="Bio_text">
+      <div class="Bio_text" data-reveal>
         <p class="Bio_para">I started building things on a screen before I understood what was running underneath. Games first, then the need to take them apart — and the discovery that the interesting part was always the layer below the surface.</p>
         <p class="Bio_para">I studied computer science, but most of what I use daily I taught myself: breaking builds, rebuilding them, pushing every tool until it stops being polite. The same instinct shaped the visual side — composition, type, brand systems.</p>
         <p class="Bio_para">Today those two halves are one practice. Every project I touch has to work under load and look deliberate at rest. What I care about is the seam between hardware, software and the people using them.</p>
@@ -182,7 +185,8 @@
   </section>
 
   <!-- ═════════════════════════════════════════════ 3d gallery -->
-  <section class="MyWay_section" id="myway">
+  <section class="MyWay_section" id="myway" aria-labelledby="myway-heading">
+    <h2 class="SrOnly" id="myway-heading">Selected work</h2>
     <div class="MyWay_center" aria-hidden="true">
       <img src="assets/images/ghost-icon.png" alt="" width="256" height="256">
     </div>
@@ -208,7 +212,8 @@
   </section>
 
   <!-- ═════════════════════════════════════════════ video wall -->
-  <section class="VideoGrid_section" id="videos">
+  <section class="VideoGrid_section" id="videos" aria-labelledby="videos-heading">
+    <h2 class="SrOnly" id="videos-heading">Session feeds</h2>
     <div class="VideoGrid_header">
       <span class="VideoGrid_headerTitle">// SURVEILLANCE SYSTEM v2.1.4</span>
       <span class="VideoGrid_headerStatus">
@@ -312,5 +317,6 @@
 <script src="assets/js/gallery.js"></script>
 <script src="assets/js/videos.js"></script>
 <script src="assets/js/faq.js"></script>
+<script src="assets/js/effects.js"></script>
 </body>
 </html>
