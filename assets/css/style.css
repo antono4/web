@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════════════
-   Maxime Duval — portfolio. Monochrome grid, glitch, editorial type.
+   antono — portfolio. Monochrome grid, glitch, editorial type.
    ══════════════════════════════════════════════════════════════════════ */
 
 /* ── fonts (SIL OFL, self hosted) ─────────────────────────────────────── */
@@ -103,7 +103,6 @@ img,video,canvas,svg{display:block;max-width:100%}
   font-size:clamp(2rem,7vw,5.5rem);letter-spacing:-.02em;line-height:1;
   opacity:0;white-space:nowrap;
 }
-.Intro_sep{font-size:.5em;color:var(--color-fg2)}
 .Intro_meta{
   position:absolute;left:var(--frame);right:var(--frame);
   bottom:calc(4.5rem + env(safe-area-inset-bottom,0px));
@@ -284,7 +283,6 @@ img,video,canvas,svg{display:block;max-width:100%}
   transform:translateY(105%);transition:transform 1s var(--ease-out);
 }
 .is-ready .Hero_bannerChar{transform:translateY(0)}
-.Hero_bannerSep{font-size:clamp(2rem,5vw,5rem);color:var(--color-accent);line-height:1;flex-shrink:0}
 
 /* ── design / code field ──────────────────────────────────────────────── */
 .Field_section{
@@ -668,7 +666,6 @@ img,video,canvas,svg{display:block;max-width:100%}
   .Hero_title{font-size:clamp(2.4rem,13vw,4rem)}
   .Hero_bannerInner{gap:.55rem;padding:.45rem .7rem}
   .Hero_bannerChar{font-size:min(11.5vw,3.6rem);letter-spacing:-.02em}
-  .Hero_bannerSep{font-size:min(5vw,1.6rem)}
   .Hero_binBar{padding:.22rem var(--frame)}
   .Hero_binText{font-size:.4rem;letter-spacing:.06em}
   .Hero_wiper{height:2px}
