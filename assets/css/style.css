@@ -37,6 +37,8 @@
   --grad-brand:linear-gradient(115deg,var(--color-accent) 0%,var(--color-accent-4) 52%,var(--color-accent-3) 100%);
   --grad-cool:linear-gradient(115deg,var(--color-accent) 0%,var(--color-accent-2) 100%);
   --grad-warm:linear-gradient(115deg,var(--color-accent-3) 0%,var(--color-accent-4) 100%);
+  --wash-a:.17;--wash-b:.14;--wash-c:.11;
+  --color-navlink:color-mix(in srgb,var(--color-fg2) 55%,var(--color-bg) 45%);
   --rec:#FF3B5C;--led:#2BE07A;
   --frame:1rem;--nav-h:5rem;
   --font-display:"Big Shoulders Display","Arial Narrow",sans-serif;
@@ -61,6 +63,9 @@
   --color-accent-5:#8A6A00;
   --rgb-accent:83,38,232;--rgb-accent-2:0,107,92;--rgb-accent-3:163,74,0;
   --rgb-accent-4:208,19,107;--rgb-fg:16,14,38;--rgb-bg:245,243,255;
+  /* a pale base needs a heavier tint to register at all */
+  --wash-a:.30;--wash-b:.24;--wash-c:.18;
+  --color-navlink:var(--color-fg2);
 }
 
 *,:after,:before{box-sizing:border-box;margin:0;padding:0}
@@ -177,7 +182,7 @@ img,video,canvas,svg{display:block;max-width:100%}
 }
 .Nav_navLink{
   font-size:clamp(.75rem,1vw,.9rem);letter-spacing:.55em;text-transform:uppercase;
-  color:color-mix(in srgb,var(--color-fg2) 55%,var(--color-bg) 45%);
+  color:var(--color-navlink);
   height:100%;display:flex;align-items:center;position:relative;
   transition:color .18s ease-out;
 }
@@ -242,6 +247,7 @@ img,video,canvas,svg{display:block;max-width:100%}
 .Nav_qrSeg{width:var(--nav-h);padding:0;overflow:hidden}
 .Nav_qrImg{width:100%;height:100%;object-fit:contain;filter:invert(1) sepia(1) hue-rotate(210deg) saturate(3);mix-blend-mode:screen}
 [data-theme=light] .Nav_qrImg{filter:none;mix-blend-mode:multiply}
+[data-theme=light] .VideoGrid_headerTitle{color:var(--color-accent)}
 
 /* ── hero ─────────────────────────────────────────────────────────────── */
 .Hero_hero{
@@ -353,9 +359,9 @@ img,video,canvas,svg{display:block;max-width:100%}
 /* outline only on one word, filled on the other, so the pair reads as a pair */
 .Field_wordTL{color:transparent}
 .Field_wordBR{
-  color:rgba(var(--rgb-accent-2),.3);
-  -webkit-text-stroke:1px rgba(var(--rgb-accent-2),.85);
-  text-shadow:0 0 44px rgba(var(--rgb-accent-2),.45);
+  color:rgba(var(--rgb-accent-2),.42);
+  -webkit-text-stroke:1.4px rgba(var(--rgb-accent-2),.95);
+  text-shadow:0 0 44px rgba(var(--rgb-accent-2),.5);
 }
 .Field_wordTL{top:.6rem;left:.75rem}
 .Field_wordBR{bottom:.6rem;right:.75rem;text-align:right}
@@ -735,6 +741,24 @@ img,video,canvas,svg{display:block;max-width:100%}
 @keyframes fringeShimmer{0%{mask-position:0 0}to{mask-position:100% 0}}
 
 @keyframes twinkle{0%,to{opacity:.15}50%{opacity:.6}}
+
+/* ── ambient colour wash ──────────────────────────────────────────────── */
+/* Declared last so it beats the solid background shorthands above. Several
+   full-bleed sections and their inner panels are flat rectangles of
+   --color-bg; these soft radials give each one a temperature. The rgb triplets
+   are remapped per theme, so one rule serves both. */
+.Intro_root,.Hero_hero,.Hero_banner,.Field_section,.VideoGrid_section,
+.VideoGrid_grid,.Faq_stage,.Faq_list,.Contact_sticky{
+  background-image:
+    radial-gradient(58% 46% at 12% 6%,rgba(var(--rgb-accent),var(--wash-a)),transparent 72%),
+    radial-gradient(54% 44% at 92% 90%,rgba(var(--rgb-accent-4),var(--wash-b)),transparent 72%),
+    radial-gradient(40% 34% at 74% 22%,rgba(var(--rgb-accent-2),var(--wash-c)),transparent 76%);
+}
+.Bio_bio,.MyWay_section{
+  background-image:
+    radial-gradient(50% 40% at 85% 15%,rgba(var(--rgb-accent-3),var(--wash-b)),transparent 74%),
+    radial-gradient(46% 38% at 8% 85%,rgba(var(--rgb-accent),var(--wash-a)),transparent 74%);
+}
 
 /* ── responsive ───────────────────────────────────────────────────────── */
 @media (max-width:1279px){
