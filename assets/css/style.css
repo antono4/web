@@ -717,6 +717,11 @@ img,video,canvas,svg{display:block;max-width:100%}
   box-shadow:0 40px 120px rgba(var(--rgb-accent),.25);
 }
 .Faq_list{background:var(--color-bg);border-top:2px solid var(--color-accent)}
+/* Short viewports: the rail cannot fit a pinned stage, so it flows normally and
+   the page scrolls through it. Set by faq.js. */
+.Faq_isTall .Faq_stage{position:static;height:auto;overflow:visible}
+.Faq_isTall .Faq_titleWrap{display:none}
+.Faq_isTall .Faq_rail{position:static;transform:none;margin-inline:auto;box-shadow:none}
 .Faq_item{position:relative;background:var(--color-bg);border-bottom:1px solid var(--color-border);
   transition:background .35s var(--ease-soft)}
 .Faq_item:hover{background:rgba(var(--rgb-accent),.07)}
@@ -726,6 +731,7 @@ img,video,canvas,svg{display:block;max-width:100%}
   padding:clamp(1rem,2vw,1.5rem) clamp(1.5rem,3vw,2.5rem);text-align:left;color:var(--color-fg);
   min-height:56px;
 }
+
 .Faq_num{
   font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.12em;color:var(--color-accent-2);
   align-self:start;padding-top:.3em;transition:color .2s;
@@ -922,6 +928,17 @@ img,video,canvas,svg{display:block;max-width:100%}
 }
 @media (max-width:767px){
   :root{--nav-h:3.25rem;--frame:.6rem}
+  /* The title used to sit in the middle of the stage with the rail drifting over
+     it, which on a phone meant small type on top of small type. It gets its own
+     band at the top instead, and the stage grows so the rail fits without the
+     answers being cut off. */
+  .Faq_stage{height:100svh;padding-top:4.5rem}
+  .Faq_titleWrap{align-items:flex-start;padding-top:.5rem}
+  .Faq_titleRow{width:calc(100% - var(--gutter) * 2)}
+  .Faq_letter{font-size:clamp(1.75rem,7vw,2.75rem)}
+  .Faq_descF,.Faq_descQ{display:block;font-size:var(--fs-2xs)}
+  .Faq_rail{top:4.5rem}
+  .Faq_question{font-size:clamp(1rem,3.6vw,1.3rem);letter-spacing:.02em}
   /* Below 768px the hero stacks and the headline spans the full width, so a
      left-side dim no longer covers it (measured 1.11:1 at 430px). The headline
      sits in the upper band there, so dim the top instead. */
@@ -1017,4 +1034,24 @@ img,video,canvas,svg{display:block;max-width:100%}
   #grain{animation:none}
   .MyWay_center{animation:none}
   .Intro_root.is-done{transition:none}
+}
+
+/* Short viewports. This has to stay last: a media query adds no specificity, so
+   it only wins if it follows the base .Contact_* rules it overrides. */
+@media (max-height:560px){
+  .Contact_top{padding-top:1rem}
+  .Contact_subject{height:min(46vh,400px)}
+  .Contact_bigRow{bottom:clamp(4.5rem,13vh,9rem)}
+  .Contact_legal{bottom:clamp(2.5rem,7vh,5rem)}
+  .Contact_fringe{height:clamp(60px,12vh,120px)}
+  .Contact_socials{margin-top:var(--sp-2)}
+}
+
+/* Phone answer text. Like the block below, this has to come after the base
+   .Faq_answerText rule: a media query adds no specificity, so sitting above it
+   meant the 12px desktop-clamp value won and this never applied. */
+@media (max-width:767px){
+  .Faq_answerInner{grid-template-columns:minmax(0,1fr)}
+  .Faq_answerGutter{display:none}
+  .Faq_answerText{padding:1.25rem 1rem .5rem;font-size:.72rem;line-height:1.75}
 }

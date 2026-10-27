@@ -98,6 +98,11 @@ labels over the video wall keep a light ink in both themes.
   instead of snapping.
 - Motion respects `prefers-reduced-motion`: the loader, grain, orbit, dot
   field and the hero matrix rain all settle to their resting state.
+- The FAQ rail is pinned inside a sticky stage and panned by scroll. The stage is
+  only as tall as the rail can use: a sticky element taller than the viewport can
+  never reveal its own bottom, so when the rail cannot fit, `faq.js` drops the
+  pin and the rail flows normally instead. Otherwise the first and last questions
+  would be unreachable.
 - The hero matrix rain is drawn in the accent tokens rather than green, so it
   works in both themes. The hero grid and the rain are dimmed only where the
   headline sits: a soft field anchored to `.Hero_left`, because the headline
