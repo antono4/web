@@ -39,6 +39,10 @@
   --grad-warm:linear-gradient(115deg,var(--color-accent-3) 0%,var(--color-accent-4) 100%);
   --wash-a:.17;--wash-b:.14;--wash-c:.11;
   --color-navlink:color-mix(in srgb,var(--color-fg2) 55%,var(--color-bg) 45%);
+  /* Muted text tiers. De-emphasis must live in the colour, not in `opacity`:
+     opacity is theme-relative, so the .35 that reads as "quiet" on a near-black
+     background lands at 1.6:1 on a pale one. Both tiers clear AA on this theme. */
+  --color-muted:#9C9CB8;--color-muted-2:#7C7C96;
   --rec:#FF3B5C;--led:#2BE07A;
   --frame:1rem;--nav-h:5.5rem;
   /* one alignment for the whole page. --pad-inline is the expression every
@@ -70,13 +74,15 @@
   --color-bg:#F5F3FF;--color-surface:#FFFFFF;--color-surface2:#E7E3FA;
   --color-fg:#100E26;--color-fg2:#575280;--color-grid:#D3CEEE;--color-border:#BFB8E4;
   --color-accent:#5326E8;--color-accent-h:#3A12C4;--color-accent-l:#A99BFF;
-  --color-accent-2:#006B5C;--color-accent-3:#A34A00;--color-accent-4:#B00E5C;
+  --color-accent-2:#006B5C;--color-accent-3:#8A3E00;--color-accent-4:#B00E5C;
   --color-accent-5:#8A6A00;
   --rgb-accent:83,38,232;--rgb-accent-2:0,107,92;--rgb-accent-3:163,74,0;
   --rgb-accent-4:208,19,107;--rgb-fg:16,14,38;--rgb-bg:245,243,255;
-  /* a pale base needs a heavier tint to register at all */
-  --wash-a:.30;--wash-b:.24;--wash-c:.18;
+  /* A pale base needs *less* tint, not more. At .30 the hero backdrop measured
+     (209,198,250); that cast alone pushed the teal labels under AA. */
+  --wash-a:.10;--wash-b:.08;--wash-c:.06;
   --color-navlink:var(--color-fg2);
+  --color-muted:#575280;--color-muted-2:#6A6494;
 }
 
 *,:after,:before{box-sizing:border-box;margin:0;padding:0}
@@ -626,9 +632,9 @@ img,video,canvas,svg{display:block;max-width:100%}
   justify-content:center;gap:.25rem;
   background:repeating-linear-gradient(0deg,rgba(255,255,255,.022),rgba(255,255,255,.022) 1px,transparent 0,transparent 3px),#07070E;
   font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.22em;text-transform:uppercase;
-  color:var(--color-accent-4);opacity:.75;text-align:center;padding:0 .5rem;
+  color:var(--color-accent-4);text-align:center;padding:0 .5rem;
 }
-.VideoGrid_noSignalSub{font-size:var(--fs-2xs);letter-spacing:.16em;opacity:.55}
+.VideoGrid_noSignalSub{font-size:var(--fs-2xs);letter-spacing:.16em;color:var(--color-muted)}
 .VideoGrid_monitor.is-offline .VideoGrid_noSignal{display:flex}
 .VideoGrid_monitor.is-offline .VideoGrid_media{opacity:0}
 
@@ -650,8 +656,8 @@ img,video,canvas,svg{display:block;max-width:100%}
 }
 .Faq_descQ,.Faq_descF{
   position:absolute;font-family:var(--font-mono);font-size:clamp(var(--fs-2xs),.8vw,var(--fs-xs));
-  letter-spacing:.08em;line-height:1.75;text-transform:uppercase;color:var(--color-fg2);
-  opacity:.55;white-space:nowrap;pointer-events:none;
+  letter-spacing:.08em;line-height:1.75;text-transform:uppercase;color:var(--color-muted);
+  white-space:nowrap;pointer-events:none;
 }
 .Faq_descF{left:calc(100% + 1.25rem);top:52%}
 .Faq_descQ{right:calc(100% + 1.25rem);bottom:52%;text-align:right}
@@ -673,15 +679,15 @@ img,video,canvas,svg{display:block;max-width:100%}
 }
 .Faq_num{
   font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.12em;color:var(--color-accent-2);
-  opacity:.6;align-self:start;padding-top:.3em;transition:opacity .2s;
+  align-self:start;padding-top:.3em;transition:color .2s;
 }
 .Faq_question{
   font-family:var(--font-display);font-size:clamp(var(--fs-base),1.6vw,1.35rem);font-weight:300;
   letter-spacing:.04em;line-height:1.1;text-transform:uppercase;color:var(--color-fg);
-  opacity:.6;transition:opacity .25s,transform .4s var(--ease-out),color .25s;
+  transition:transform .4s var(--ease-out),color .25s;
 }
-.Faq_item.is-open .Faq_num{opacity:1;text-shadow:0 0 14px rgba(var(--rgb-accent-2),.8)}
-.Faq_item.is-open .Faq_question{opacity:1;transform:translateX(4px);color:var(--color-accent-h)}
+.Faq_item.is-open .Faq_num{text-shadow:0 0 14px rgba(var(--rgb-accent-2),.8)}
+.Faq_item.is-open .Faq_question{transform:translateX(4px);color:var(--color-accent-h)}
 .Faq_icoWrap{position:relative;width:20px;height:20px;flex-shrink:0;color:var(--color-fg2);transition:color .2s}
 .Faq_item.is-open .Faq_icoWrap{color:var(--color-accent-2)}
 .Faq_icoWrap svg{position:absolute;top:0;left:0;width:100%;height:100%;transition:transform .4s var(--ease-out)}
@@ -724,15 +730,15 @@ img,video,canvas,svg{display:block;max-width:100%}
 .Contact_infoTR{align-items:flex-end;text-align:right}
 .Contact_infoLabel{
   font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.35em;text-transform:uppercase;
-  color:var(--color-accent-3);opacity:.9;margin-bottom:.15rem;
+  color:var(--color-accent-3);margin-bottom:.15rem;
 }
-.Contact_infoText{font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.06em;color:var(--color-fg2);opacity:.55}
+.Contact_infoText{font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.06em;color:var(--color-muted)}
 .Contact_infoLink{
   font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.06em;color:var(--color-fg2);
   position:relative;display:inline-flex;align-items:center;min-height:24px;
   transition:opacity .18s,color .18s;
 }
-.Contact_infoLink:hover{color:var(--color-accent-2);opacity:1}
+.Contact_infoLink:hover{color:var(--color-accent-2)}
 .Contact_socials{display:flex;gap:var(--sp-3);margin-top:var(--sp-3)}
 .SocialIconButton_btn{
   width:44px;height:44px;display:flex;align-items:center;justify-content:center;
@@ -773,15 +779,15 @@ img,video,canvas,svg{display:block;max-width:100%}
 }
 .Contact_legalText{
   font-family:var(--font-mono);font-size:var(--fs-2xs);text-transform:uppercase;
-  color:var(--color-fg2);opacity:.35;letter-spacing:.12em;
+  color:var(--color-muted-2);letter-spacing:.12em;
 }
 .Contact_legalLinks{display:flex;gap:var(--sp-4);letter-spacing:.1em;pointer-events:auto}
 .Contact_legalLinks a{
   font-family:var(--font-mono);font-size:var(--fs-2xs);text-transform:uppercase;
-  color:var(--color-fg2);opacity:.35;
+  color:var(--color-muted-2);
   display:inline-flex;align-items:center;min-height:24px;padding-block:.2rem;
 }
-.Contact_legalLinks a:hover{opacity:1;color:var(--color-accent-2)}
+.Contact_legalLinks a:hover{color:var(--color-accent-2)}
 .Contact_fringe{
   position:relative;left:0;right:0;height:clamp(150px,20vh,250px);
   background-image:var(--grad-brand);
@@ -817,8 +823,8 @@ img,video,canvas,svg{display:block;max-width:100%}
 .SectionIndex_link{
   display:flex;align-items:center;gap:var(--sp-2);min-height:24px;
   font-family:var(--font-mono);font-size:var(--fs-2xs);letter-spacing:.14em;
-  text-transform:uppercase;color:var(--color-fg2);opacity:.45;
-  transition:opacity .3s,color .3s;
+  text-transform:uppercase;color:var(--color-muted);
+  transition:color .3s;
 }
 .SectionIndex_label{
   opacity:0;translate:6px 0;transition:opacity .3s,translate .3s var(--ease-out);
@@ -827,9 +833,9 @@ img,video,canvas,svg{display:block;max-width:100%}
   width:6px;height:6px;border-radius:50%;border:1px solid currentColor;
   transition:background .3s,box-shadow .3s,scale .3s;
 }
-.SectionIndex_link:hover{opacity:1;color:var(--color-accent-2)}
+.SectionIndex_link:hover{color:var(--color-accent-2)}
 .SectionIndex_link:hover .SectionIndex_label{opacity:1;translate:0 0}
-.SectionIndex_link.is-active{opacity:1;color:var(--color-fg)}
+.SectionIndex_link.is-active{color:var(--color-fg)}
 .SectionIndex_link.is-active .SectionIndex_dot{
   background:var(--color-accent);border-color:var(--color-accent);
   box-shadow:0 0 10px rgba(var(--rgb-accent),.9);scale:1.35;
