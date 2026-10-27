@@ -158,7 +158,7 @@ img,video,canvas,svg{display:block;max-width:100%}
   font-family:var(--font-display);font-weight:800;text-transform:uppercase;
   font-size:clamp(2rem,7vw,5.5rem);letter-spacing:-.02em;line-height:1;
   opacity:0;white-space:nowrap;
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
 }
 .Intro_meta{
@@ -303,10 +303,10 @@ img,video,canvas,svg{display:block;max-width:100%}
   font-size:clamp(2.6rem,7.6vw,7rem);line-height:.88;letter-spacing:-.03em;
 }
 .Hero_word{
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
 }
-.Hero_line:nth-child(2) .Hero_word{background:var(--grad-warm)}
+.Hero_line:nth-child(2) .Hero_word{background-image:var(--grad-warm)}
 .Hero_line{display:block;overflow:hidden}
 .Hero_word{display:block;transform:translateY(105%);transition:transform 1.1s var(--ease-out)}
 .is-ready .Hero_word{transform:translateY(0)}
@@ -367,7 +367,7 @@ img,video,canvas,svg{display:block;max-width:100%}
 .Hero_bannerChar{
   display:inline-block;font-size:clamp(4rem,11vw,10rem);font-weight:800;letter-spacing:-.03em;
   line-height:1;font-family:var(--font-display);
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
   filter:drop-shadow(0 0 30px rgba(var(--rgb-accent),.35));
   transform:translateY(105%);transition:transform 1s var(--ease-out);
@@ -407,10 +407,10 @@ img,video,canvas,svg{display:block;max-width:100%}
   font-size:clamp(2.5rem,6vw,7rem);font-weight:800;font-family:var(--font-display);
   opacity:0;text-transform:uppercase;letter-spacing:-.02em;
   line-height:1;will-change:opacity;
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
 }
-.Field_blockRight .Field_label{background:var(--grad-cool)}
+.Field_blockRight .Field_label{background-image:var(--grad-cool)}
 .Field_label.is-active{opacity:1;transition:opacity .5s ease}
 .Field_blockRight .Field_label{text-align:right}
 .Field_desc{
@@ -540,7 +540,7 @@ img,video,canvas,svg{display:block;max-width:100%}
   font-family:var(--font-display);font-weight:900;text-transform:uppercase;
   font-size:calc(var(--padding) * .45);line-height:.9;letter-spacing:-.03em;
   text-align:center;white-space:nowrap;
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
   /* it drifts over the gallery, so it needs its own separation from whatever
      card happens to be behind it */
@@ -651,7 +651,7 @@ img,video,canvas,svg{display:block;max-width:100%}
 .Faq_letter{
   font-family:var(--font-display);font-size:clamp(2rem,6.5vw,5.5rem);font-weight:900;line-height:1;
   letter-spacing:-.03em;text-transform:uppercase;display:block;
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
 }
 .Faq_descQ,.Faq_descF{
@@ -763,7 +763,7 @@ img,video,canvas,svg{display:block;max-width:100%}
   letter-spacing:-.01em;text-transform:uppercase;line-height:1;white-space:nowrap;
   display:inline-flex;align-items:center;min-height:44px;padding-block:.35rem;
   position:relative;
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
 }
 .Contact_bigLink:after{
