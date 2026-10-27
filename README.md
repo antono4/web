@@ -92,7 +92,6 @@ of something that is dark either way: the monitor HUD text and the bezel
 labels over the video wall keep a light ink in both themes.
 
 ## Notes
-
 - The theme toggle swaps the tokens and fires a short chromatic glitch over
   the transition. The `@property` registrations make that swap interpolate
   instead of snapping.
