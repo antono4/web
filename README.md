@@ -17,6 +17,7 @@ assets/js/
   data.js                  shared helpers plus the WORK / MONITORS / FAQ content
   intro.js                 boot overlay: particle star, then the split
   chrome.js                custom cursor, theme glitch, nav logo, hero grid
+  matrix.js                hero matrix rain (token-coloured, theme aware)
   field.js                 interactive dot field and the rotating label pairs
   bio.js                   schematic lines and card parallax
   gallery.js               3D work gallery, drag to inspect
@@ -95,8 +96,12 @@ labels over the video wall keep a light ink in both themes.
 - The theme toggle swaps the tokens and fires a short chromatic glitch over
   the transition. The `@property` registrations make that swap interpolate
   instead of snapping.
-- Motion respects `prefers-reduced-motion`: the loader, grain, orbit and dot
-  field all settle to their resting state.
+- Motion respects `prefers-reduced-motion`: the loader, grain, orbit, dot
+  field and the hero matrix rain all settle to their resting state.
+- The hero matrix rain is drawn in the accent tokens rather than green, so it
+  works in both themes. The hero grid and the rain are dimmed only where the
+  headline sits: a soft field anchored to `.Hero_left`, because the headline
+  covers anywhere from 47% to 96% of the viewport as the layout reflows.
 - Monitors only decode their loop while they are near the viewport, and
   everything pauses when the tab is hidden.
 - The intro and dot-field canvases read their colours from the same CSS tokens
