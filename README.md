@@ -5,10 +5,60 @@ gallery that travels past the camera on scroll, a thirteen-camera
 "surveillance" wall, an accordion FAQ pinned behind a sticky title, and a
 contact screen with a masked silhouette and an animated fringe.
 
+![The hero: a split-flap title and the stats band over a matrix-rain canvas](docs/hero.jpg)
+
 Everything is static: no framework, no build step, no dependencies. Open
 `index.html` and it runs.
 
-## Layout
+## The screens
+
+Six sections, one scroll.
+
+### Field
+
+An interactive dot field with rotating label pairs.
+
+![Field: the dot field with the Layout / Logic label pair](docs/field.jpg)
+
+### Work
+
+A 3D gallery that travels past the camera on scroll. Drag to inspect a card.
+
+![Work: the 3D gallery travelling past the camera, under the drifting title](docs/gallery.jpg)
+
+### Feeds
+
+Thirteen monitors that decode their loop only while they are near the viewport.
+
+![Feeds: the thirteen-monitor wall with live timestamps](docs/monitors.jpg)
+
+### FAQ
+
+An accordion pinned behind a sticky title. One answer opens at a time.
+
+![FAQ: the accordion with an answer open, drifting through the sticky F / Q title](docs/faq.jpg)
+
+### Contact
+
+A masked silhouette, the big mail link, and an animated fringe.
+
+![Contact: the masked silhouette and the contact links](docs/contact.jpg)
+
+## Theming
+
+Every colour is a token, so the toggle swaps the whole page and fires a short
+chromatic glitch over the transition. Nothing else changes between the themes.
+
+![The same page in light theme](docs/hero-light.jpg)
+
+## Narrow widths
+
+One gutter, one type scale, and the pinned stages fall back to normal flow when
+they cannot fit. Verified from 1920px down to 360px.
+
+![The page at 390px wide](docs/mobile.jpg)
+
+## Files
 
 ```
 index.html                 single page
@@ -26,6 +76,7 @@ assets/js/
 assets/fonts/              Big Shoulders Display, Bodoni Moda, Martian Mono (SIL OFL)
 assets/works/              12 gallery images, 13 poster frames, 13 loop videos
 assets/images/             ghost icon, QR code, contact masks
+docs/                      the screenshots above
 tools/make_assets.py       regenerates every file in assets/
 ```
 
@@ -49,7 +100,7 @@ writes the whole of `assets/`. Editing the drawing functions in
 `tools/make_assets.py` is the way to change the visual direction of the
 gallery and the monitor wall.
 
-## Layout
+## Layout and spacing
 
 Everything shares one gutter. `--pad-inline` is
 `max(--gutter, (100% - --maxw) / 2)`, and every full-bleed section uses it, so
@@ -93,6 +144,7 @@ of something that is dark either way: the monitor HUD text and the bezel
 labels over the video wall keep a light ink in both themes.
 
 ## Notes
+
 - The theme toggle swaps the tokens and fires a short chromatic glitch over
   the transition. The `@property` registrations make that swap interpolate
   instead of snapping.
@@ -120,3 +172,6 @@ labels over the video wall keep a light ink in both themes.
   per-work accent pair by `duotone()` in `tools/make_assets.py`. The mapping
   keeps each drawing's own luminance and only takes the colour from the ramp;
   a plain colour-map flattens these mostly-solid panels into single hues.
+- The screenshots in `docs/` are rendered from this page by Playwright at
+  1440x900, so they go stale if the layout changes. Re-shoot them rather than
+  editing them.
