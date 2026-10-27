@@ -401,7 +401,7 @@ img,video,canvas,svg{display:block;max-width:100%}
   position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;
   padding:0 var(--pad-inline);pointer-events:none;
 }
-.Field_block{display:flex;flex-direction:column;gap:var(--sp-4);max-width:26%}
+.Field_block{display:flex;flex-direction:column;gap:var(--sp-4)}
 .Field_blockRight{align-items:flex-end}
 .Field_label{
   font-size:clamp(2.5rem,6vw,7rem);font-weight:800;font-family:var(--font-display);
@@ -409,13 +409,16 @@ img,video,canvas,svg{display:block;max-width:100%}
   line-height:1;will-change:opacity;
   background-image:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
   color:transparent;-webkit-text-fill-color:transparent;
+  /* `background-clip:text` paints only within this box, so the box has to cover
+     every glyph. width:max-content guarantees that whatever the font-size does. */
+  width:max-content;
 }
 .Field_blockRight .Field_label{background-image:var(--grad-cool)}
 .Field_label.is-active{opacity:1;transition:opacity .5s ease}
 .Field_blockRight .Field_label{text-align:right}
 .Field_desc{
   font-family:var(--font-mono);font-size:clamp(var(--fs-xs),.9vw,var(--fs-sm));line-height:1.7;
-  color:var(--color-fg2);min-height:4em;
+  color:var(--color-fg2);min-height:4em;max-width:20rem;
 }
 .Field_blockRight .Field_desc{text-align:right}
 
@@ -894,7 +897,6 @@ img,video,canvas,svg{display:block;max-width:100%}
   .Field_word{font-size:clamp(2.6rem,14vw,4.5rem)}
   .Field_overlay{position:static;padding:0 var(--pad-inline);flex-direction:column;
     gap:var(--sp-7);align-items:flex-start}
-  .Field_block{max-width:100%}
   .Field_blockRight{align-items:flex-start}
   .Field_blockRight .Field_label,.Field_blockRight .Field_desc{text-align:left}
   .Field_label{font-size:clamp(1.8rem,9vw,3rem)}
